@@ -1,0 +1,12 @@
+shader flowerPotShader
+(
+    color cin = 1,
+    output color cout = 0
+)
+
+{
+    float repeatCount = 6;
+    float s = P[0] * repeatCount;
+    float t = P[1] * repeatCount;
+    cout = (color)noise("cell",s,t);
+}
