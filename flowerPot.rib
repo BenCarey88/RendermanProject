@@ -25,8 +25,8 @@ Translate 0 -3 0
 Patch "bilinear" "P" [-6 0 0 6 0 0 -6 0 10 6 0 10]
 AttributeEnd 
 AttributeBegin 
-Pattern "flowerPotShader" "flowerPotShader" "color cin" [1 0 0]
-Bxdf "PxrSurface" "plastic" "reference color diffuseColor" ["flowerPotShader:cout"] "reference color specularFaceColor" ["flowerPotShader:specOut"] "float specularRoughness" [0.800000012] "int diffuseDoubleSided" [1]
+Pattern "flowerPotShader" "flowerPotShader" "color cin" [0.150000006 0.0500000007 0]
+Bxdf "PxrDisney" "bxdf" "reference color baseColor" ["flowerPotShader:cout"] "float roughness" [0.600000024]
 Translate -2 0 0
 Translate 0 0 5
 Rotate 90 1 0 0

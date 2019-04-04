@@ -60,23 +60,30 @@ def renderingRoutine(filename):
 
     ri.Pattern('flowerPotShader','flowerPotShader',
     {
-        'color cin' : [1,0,0]
+        'color cin' : [0.15,0.05,0]
     })
 
-    ri.Bxdf('PxrSurface', 'plastic', 
+    """ri.Bxdf('PxrSurface', 'plastic', 
     { 
         'reference color diffuseColor' : ['flowerPotShader:cout'],
         'reference color specularFaceColor' : ['flowerPotShader:specOut'],
         'float specularRoughness' : [0.8],
         'int diffuseDoubleSided' : [1],
-    })
+    })"""
 
     #switch to pxrDisney - but can only attach things to color and normal here
 
-    """ri.Bxdf('PxrDisney','bxdf',
-    { 
-        'reference color baseColor' : ['flowerPotShader:cout'] ,
-    })"""
+    ri.Bxdf('PxrDisney','bxdf',
+    {
+        'reference color baseColor' : ['flowerPotShader:cout'],
+        #'color emitColor' : [0,0.1,0],
+        #'color subsurfaceColor' : [0,0.5,0.5],
+        #'float subsurface ' : [0.1],
+        #'float metallic' : [1],
+        #'float specular' : [0.5],
+        #'float specularTint' : [1]
+        'float roughness' : [0.6]
+    })
 
     ri.Translate(-2,0,0)
     ri.Translate(0,0,5)
