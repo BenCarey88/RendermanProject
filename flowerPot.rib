@@ -25,22 +25,22 @@ Translate 0 -3 0
 Patch "bilinear" "P" [-6 0 0 6 0 0 -6 0 10 6 0 10]
 AttributeEnd 
 AttributeBegin 
-Pattern "flowerPotShader" "flowerPotShader" 
-Bxdf "PxrDiffuse" "test" "reference color diffuseColor" ["flowerPotShader:cout"]
+Pattern "flowerPotShader" "flowerPotShader" "color cin" [1 0 0]
+Bxdf "PxrSurface" "plastic" "reference color diffuseColor" ["flowerPotShader:cout"] "reference color specularFaceColor" ["flowerPotShader:specOut"] "float specularRoughness" [0.800000012] "int diffuseDoubleSided" [1]
 Translate -2 0 0
 Translate 0 0 5
 Rotate 90 1 0 0
 Cone 10 1.60000002 360 
 Torus 1.70000005 0.100000001 0 360 360 
-Cylinder 1.60000002 0 -0.400000006 360 
-Cylinder 1.79999995 0 -0.400000006 360 
 Translate 0 0 -0.400000006
+Cylinder 1.60000002 0 0.400000006 360 
+Cylinder 1.79999995 0 0.400000006 360 
 Torus 1.70000005 0.100000001 0 360 360 
 Translate 0 0 -0.100000001
 Torus 1.79999995 0.100000001 0 360 360 
-Cylinder 1.70000005 0 -0.0500000007 360 
-Cylinder 1.89999998 0 -0.0500000007 360 
 Translate 0 0 -0.0500000007
+Cylinder 1.70000005 0 0.0500000007 360 
+Cylinder 1.89999998 0 0.0500000007 360 
 Torus 1.79999995 0.100000001 0 360 360 
 AttributeEnd 
 WorldEnd 

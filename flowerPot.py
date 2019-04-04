@@ -58,11 +58,25 @@ def renderingRoutine(filename):
     #Flower Pot
     ri.AttributeBegin()
 
-    ri.Pattern('flowerPotShader','flowerPotShader')
-    ri.Bxdf('PxrDiffuse', 'test', 
-    { 
-        'reference color diffuseColor' : ['flowerPotShader:cout']
+    ri.Pattern('flowerPotShader','flowerPotShader',
+    {
+        'color cin' : [1,0,0]
     })
+
+    ri.Bxdf('PxrSurface', 'plastic', 
+    { 
+        'reference color diffuseColor' : ['flowerPotShader:cout'],
+        'reference color specularFaceColor' : ['flowerPotShader:specOut'],
+        'float specularRoughness' : [0.8],
+        'int diffuseDoubleSided' : [1],
+    })
+
+    #switch to pxrDisney - but can only attach things to color and normal here
+
+    """ri.Bxdf('PxrDisney','bxdf',
+    { 
+        'reference color baseColor' : ['flowerPotShader:cout'] ,
+    })"""
 
     ri.Translate(-2,0,0)
     ri.Translate(0,0,5)
@@ -77,17 +91,17 @@ def renderingRoutine(filename):
     ri.Cone(10,rCone,360)
             
     ri.Torus(rCone + rMinTorus1, rMinTorus1, 0, 360, 360)
-    ri.Cylinder(rCone,0,-hCylinder1, 360)
-    ri.Cylinder(rCone + 2*rMinTorus1, 0, -hCylinder1, 360)
     ri.Translate(0, 0, -hCylinder1)
+    ri.Cylinder(rCone,0,hCylinder1, 360)
+    ri.Cylinder(rCone + 2*rMinTorus1, 0, hCylinder1, 360)
     ri.Torus(rCone + rMinTorus1, rMinTorus1, 0, 360, 360)
 
     ri.Translate(0,0,-rMinTorus1)
 
     ri.Torus(rCone + rMinTorus1 + rMinTorus2, rMinTorus2, 0, 360, 360)
-    ri.Cylinder(rCone + rMinTorus1, 0, -hCylinder2, 360)
-    ri.Cylinder(rCone + rMinTorus1 + 2*rMinTorus2, 0, -hCylinder2, 360)
     ri.Translate(0, 0, -hCylinder2)
+    ri.Cylinder(rCone + rMinTorus1, 0, hCylinder2, 360)
+    ri.Cylinder(rCone + rMinTorus1 + 2*rMinTorus2, 0, hCylinder2, 360)
     ri.Torus(rCone + rMinTorus1 + rMinTorus2, rMinTorus2, 0, 360, 360)
 
     ri.AttributeEnd()
