@@ -10,12 +10,6 @@ Translate 0 -1 0
 Rotate -20 1 0 0
 WorldBegin 
 AttributeBegin 
-Translate -2 2 -2
-Rotate 45 1 0 0
-Rotate 45 0 1 0
-Light "PxrRectLight" "rectLight" "float exposure" [5]
-AttributeEnd 
-AttributeBegin 
 Rotate -90 1 0 0
 Rotate 10 0 0 1
 Light "PxrDomeLight" "domeLight" "float exposure" [0] "string lightColorMap" ["envMap.tx"]
@@ -24,12 +18,16 @@ AttributeBegin
 Translate 0 -3 0
 Patch "bilinear" "P" [-6 0 0 6 0 0 -6 0 10 6 0 10]
 AttributeEnd 
-AttributeBegin 
-Pattern "flowerPotShader" "flowerPotShader" "color cin" [0.150000006 0.0500000007 0]
-Bxdf "PxrDisney" "bxdf" "reference color baseColor" ["flowerPotShader:cout"] "float roughness" [0.600000024]
+TransformBegin 
 Translate -2 0 0
 Translate 0 0 5
 Rotate 90 1 0 0
+CoordinateSystem "pot"
+AttributeBegin 
+Attribute "displacementbound" "sphere" [1] "coordinatesystem" ["shader"]
+Displace "PxrDisplace" "myDisp" "reference float dispScalar" ["flowerPotShader:dispOut"] "float dispAmount" [2]
+Pattern "flowerPotShader" "flowerPotShader" "color cin" [0.150000006 0.0500000007 0]
+Bxdf "PxrDisney" "bxdf" "reference color baseColor" ["flowerPotShader:cout"] "float roughness" [0.600000024]
 Cone 10 1.60000002 360 
 Torus 1.70000005 0.100000001 0 360 360 
 Translate 0 0 -0.400000006
@@ -43,4 +41,12 @@ Cylinder 1.70000005 0 0.0500000007 360
 Cylinder 1.89999998 0 0.0500000007 360 
 Torus 1.79999995 0.100000001 0 360 360 
 AttributeEnd 
+AttributeBegin 
+Attribute "displacementbound" "sphere" [1] "coordinatesystem" ["shader"]
+Pattern "soilShader" "soilShader" "color cin" [0.0500000007 0.0199999996 0]
+Displace "PxrDisplace" "myDisp" "reference float dispScalar" ["soilShader:dispOut"] "float dispAmount" [2]
+Bxdf "PxrDisney" "soil" "float specularTint" [0.699999988] "reference color baseColor" ["soilShader:cout"] "color subsurfaceColor" [0.00100000005 0.00100000005 0.00100000005] "float specular" [0.400000006] "float subsurface" [0.300000012] "float roughness" [0.699999988]
+Disk -0.100000001 1.60000002 360 
+AttributeEnd 
+TransformEnd 
 WorldEnd 

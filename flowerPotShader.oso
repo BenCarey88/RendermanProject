@@ -2,41 +2,854 @@ OpenShadingLanguage 1.00
 # Compiled by oslc 1.8.2.pixar1697a56
 # options: 
 shader flowerPotShader
-param	color	cin	1 1 1		%read{8,8} %write{2147483647,-1}
-oparam	color	cout	0 0 0		%read{2147483647,-1} %write{8,8}
+param	color	cin	1 1 1		%read{53,202} %write{2147483647,-1}
+oparam	color	cout	0 0 0		%read{106,244} %write{53,244}
 oparam	color	specOut	0 1 0		%read{2147483647,-1} %write{2147483647,-1}
-global	point	P	%read{1,3} %write{2147483647,-1}
-local	float	repeatCount	%read{2,4} %write{0,0}
-local	float	s	%read{5,5} %write{2,2}
-local	float	t	%read{5,5} %write{4,4}
-local	vector	noiseLayer	%read{8,8} %write{7,7}
-const	int	$const1	6		%read{0,0} %write{2147483647,-1}
-const	int	$const2	0		%read{1,1} %write{2147483647,-1}
-temp	float	$tmp1	%read{2,2} %write{1,1}
-const	int	$const3	1		%read{3,3} %write{2147483647,-1}
-temp	float	$tmp2	%read{4,4} %write{3,3}
-const	float	$const4	0.5		%read{6,7} %write{2147483647,-1}
-temp	vector	$tmp3	%read{6,6} %write{5,5}
-const	string	$const5	"perlin"		%read{5,5} %write{2147483647,-1}
-temp	vector	$tmp4	%read{7,7} %write{6,6}
+oparam	float	dispOut	0		%read{105,285} %write{105,285}
+global	point	P	%read{1,1} %write{2147483647,-1}
+local	point	PP	%read{2,226} %write{1,1}
+local	float	X	%read{72,200} %write{2,2}
+local	float	Y	%read{71,274} %write{4,4}
+local	float	Z	%read{88,200} %write{5,5}
+local	float	repeatCountQ	%read{11,11} %write{6,6}
+local	float	repeatCountR	%read{16,16} %write{7,7}
+local	float	s	%read{18,21} %write{11,11}
+local	float	t	%read{23,26} %write{16,16}
+local	float	q	%read{254,280} %write{21,21}
+local	float	r	%read{254,254} %write{26,26}
+local	float	___325_val	%read{77,86} %write{74,85}
+local	int	___326_i	%read{77,85} %write{76,85}
+local	float	___331_val	%read{38,227} %write{35,226}
+local	int	___332_i	%read{38,226} %write{37,226}
+local	color	___334_baseNoiseCol	%read{53,53} %write{27,27}
+local	float	___334_amp	%read{38,47} %write{28,47}
+local	float	___334_persistence	%read{38,49} %write{29,29}
+local	float	___334_freq	%read{38,47} %write{30,47}
+local	float	___334_lacunarity	%read{38,47} %write{31,31}
+local	float	___334_octaves	%read{38,47} %write{32,32}
+local	float	___334_seed	%read{38,47} %write{33,33}
+local	float	___334_colorSwitch	%read{50,53} %write{48,52}
+local	float	___335_crackX	%read{94,98} %write{54,54}
+local	float	___335_width	%read{93,98} %write{55,93}
+local	float	___335_fuzz	%read{92,99} %write{56,92}
+local	float	___335_crackEndY	%read{90,91} %write{57,57}
+local	float	___335_crackFalloff	%read{90,90} %write{58,58}
+local	float	___335_indent	%read{104,104} %write{59,59}
+local	color	___335_crackColor	%read{64,106} %write{60,64}
+local	float	___335_amp	%read{77,85} %write{65,85}
+local	float	___335_persistence	%read{77,85} %write{66,66}
+local	float	___335_freq	%read{77,85} %write{67,85}
+local	float	___335_lacunarity	%read{77,85} %write{68,68}
+local	float	___335_octaves	%read{77,85} %write{69,69}
+local	float	___335_seed	%read{77,85} %write{70,70}
+local	float	___335_crack	%read{87,102} %write{72,87}
+local	float	___336_inCrackY	%read{92,93} %write{91,91}
+local	float	___336_inCrackX	%read{104,106} %write{103,103}
+local	point	___338_here	%read{109,201} %write{108,200}
+local	float	___338_dist	%read{136,239} %write{109,228}
+local	color	___338_weatheringCol1	%read{113,234} %write{110,202}
+local	color	___338_weatheringCol2	%read{152,244} %write{114,206}
+local	float	___338_amp	%read{125,226} %write{115,226}
+local	float	___338_persistence	%read{125,226} %write{116,208}
+local	float	___338_freq	%read{125,226} %write{117,226}
+local	float	___338_lacunarity	%read{125,226} %write{118,210}
+local	float	___338_octaves	%read{125,226} %write{119,211}
+local	float	___338_seed	%read{125,226} %write{120,212}
+local	float	___339_scale1	%read{142,235} %write{141,233}
+local	float	___340_scale2	%read{149,243} %write{148,242}
+local	float	___342_diskFalloff	%read{257,258} %write{252,252}
+local	point	___342_centre	%read{255,255} %write{253,253}
+local	point	___342_here	%read{255,255} %write{254,254}
+local	float	___342_dist	%read{259,259} %write{255,255}
+local	float	___342_diskRad	%read{257,258} %write{256,256}
+local	float	___342_inDisk	%read{261,261} %write{260,260}
+local	float	___341_lineTop	%read{269,269} %write{263,263}
+local	float	___341_lineBottom	%read{266,274} %write{264,264}
+local	float	___341_lineFalloff	%read{273,273} %write{265,265}
+local	float	___343_scale	%read{278,278} %write{276,276}
+local	float	___343_lineWidth	%read{278,279} %write{277,278}
+local	float	___343_inLine	%read{284,284} %write{283,283}
+const	string	$const1	"pot"		%read{1,1} %write{2147483647,-1}
+const	string	$const2	"transform"		%read{0,0} %write{2147483647,-1}
+const	string	$const3	"common"		%read{1,1} %write{2147483647,-1}
+const	int	$const4	0		%read{2,270} %write{2147483647,-1}
+const	int	$const5	3		%read{118,264} %write{2147483647,-1}
+const	int	$const6	2		%read{3,68} %write{2147483647,-1}
+temp	float	$tmp1	%read{4,4} %write{3,3}
+const	float	$const7	3		%read{4,4} %write{2147483647,-1}
+const	int	$const8	1		%read{5,226} %write{2147483647,-1}
+const	int	$const9	6		%read{6,6} %write{2147483647,-1}
+const	float	$const10	2.9000001		%read{7,7} %write{2147483647,-1}
+temp	float	$tmp2	%read{11,11} %write{10,10}
+temp	float	$tmp3	%read{10,10} %write{8,8}
+temp	float	$tmp4	%read{10,10} %write{9,9}
+temp	float	$tmp5	%read{15,15} %write{12,12}
+temp	float	$tmp6	%read{15,15} %write{14,14}
+temp	float	$tmp7	%read{14,14} %write{13,13}
+const	float	$const12	10		%read{13,13} %write{2147483647,-1}
+const	float	$const13	1.6		%read{13,13} %write{2147483647,-1}
+temp	float	$tmp8	%read{16,16} %write{15,15}
+const	float	$const14	1		%read{18,260} %write{2147483647,-1}
+const	string	$const15	"mod"		%read{17,22} %write{2147483647,-1}
+temp	float	$tmp9	%read{20,20} %write{19,19}
+temp	float	$tmp10	%read{19,19} %write{18,18}
+temp	float	$tmp11	%read{21,21} %write{20,20}
+temp	float	$tmp12	%read{25,25} %write{24,24}
+temp	float	$tmp13	%read{24,24} %write{23,23}
+temp	float	$tmp14	%read{26,26} %write{25,25}
+const	color	$const16	0.1 0.059999999 0.0099999998		%read{27,27} %write{2147483647,-1}
+const	float	$const17	0.5		%read{29,283} %write{2147483647,-1}
+const	int	$const18	4		%read{32,211} %write{2147483647,-1}
+const	string	$const19	"perlinNoise"		%read{34,213} %write{2147483647,-1}
+temp	int	$tmp15	%read{36,47} %write{37,47}
+temp	float	$tmp16	%read{38,47} %write{38,47}
+const	string	$const20	"perlin"		%read{42,221} %write{2147483647,-1}
+temp	point	$tmp17	%read{38,47} %write{38,47}
+temp	point	$tmp18	%read{38,47} %write{38,47}
+temp	point	$tmp19	%read{38,47} %write{38,47}
+temp	float	$tmp20	%read{38,47} %write{38,47}
+temp	float	$tmp21	%read{50,50} %write{49,49}
+temp	float	$tmp22	%read{52,52} %write{51,51}
+const	float	$const21	0.02		%read{55,56} %write{2147483647,-1}
+const	float	$const22	1.7		%read{57,57} %write{2147483647,-1}
+const	float	$const23	0.30000001		%read{58,277} %write{2147483647,-1}
+const	float	$const24	0.0049999999		%read{59,284} %write{2147483647,-1}
+const	color	$const25	1 1 1		%read{60,202} %write{2147483647,-1}
+const	float	$const26	0.2		%read{60,265} %write{2147483647,-1}
+temp	float	$tmp24	%read{62,62} %write{61,61}
+temp	float	$tmp25	%read{63,63} %write{62,62}
+temp	float	$tmp26	%read{64,64} %write{63,63}
+const	float	$const27	0.1		%read{71,252} %write{2147483647,-1}
+temp	float	$tmp27	%read{72,72} %write{71,71}
+temp	float	$tmp28	%read{87,87} %write{86,86}
+temp	int	$tmp29	%read{75,85} %write{76,85}
+temp	float	$tmp30	%read{77,85} %write{77,85}
+temp	float	$tmp31	%read{77,85} %write{77,85}
+temp	float	$tmp32	%read{77,85} %write{77,85}
+temp	float	$tmp33	%read{77,85} %write{77,85}
+temp	int	$tmp34	%read{89,89} %write{88,88}
+temp	float	$tmp35	%read{91,91} %write{90,90}
+temp	float	$tmp36	%read{95,95} %write{94,94}
+temp	float	$tmp37	%read{101,101} %write{95,95}
+temp	float	$tmp38	%read{101,101} %write{96,96}
+temp	float	$tmp39	%read{102,102} %write{97,97}
+temp	float	$tmp40	%read{99,99} %write{98,98}
+temp	float	$tmp41	%read{102,102} %write{99,99}
+const	string	$const28	"doubleSmoothstep"		%read{100,100} %write{2147483647,-1}
+temp	float	$tmp42	%read{103,103} %write{101,101}
+temp	float	$tmp43	%read{103,103} %write{102,102}
+temp	float	$tmp44	%read{105,105} %write{104,104}
+const	point	$const29	1.1 0.40000001 -0.80000001		%read{109,109} %write{2147483647,-1}
+const	float	$const30	0.80000001		%read{111,147} %write{2147483647,-1}
+const	string	$const31	"addWeathering"		%read{107,199} %write{2147483647,-1}
+temp	color	$tmp47	%read{114,114} %write{113,113}
+temp	float	$tmp48	%read{112,112} %write{111,111}
+temp	float	$tmp49	%read{113,113} %write{112,112}
+const	color	$const32	0.02 0.0099999998 0		%read{114,206} %write{2147483647,-1}
+const	float	$const33	0.69999999		%read{115,207} %write{2147483647,-1}
+const	float	$const34	0.56		%read{116,208} %write{2147483647,-1}
+temp	float	$tmp51	%read{136,136} %write{135,135}
+temp	int	$tmp52	%read{123,134} %write{124,134}
+temp	float	$tmp53	%read{125,134} %write{125,134}
+temp	point	$tmp54	%read{125,134} %write{125,134}
+temp	point	$tmp55	%read{125,134} %write{125,134}
+temp	point	$tmp56	%read{125,134} %write{125,134}
+temp	float	$tmp57	%read{125,134} %write{125,134}
+temp	int	$tmp58	%read{138,138} %write{137,137}
+temp	float	$tmp59	%read{141,141} %write{140,140}
+temp	float	$tmp60	%read{140,140} %write{139,139}
+const	float	$const35	0		%read{140,254} %write{2147483647,-1}
+const	float	$const36	0.0040000002		%read{143,235} %write{2147483647,-1}
+temp	float	$tmp61	%read{144,144} %write{143,143}
+temp	int	$tmp62	%read{146,146} %write{145,145}
+temp	float	$tmp63	%read{148,148} %write{147,147}
+temp	float	$tmp64	%read{150,150} %write{149,149}
+temp	float	$tmp65	%read{152,152} %write{151,151}
+const	point	$const37	-1 2.7 -1.1		%read{155,155} %write{2147483647,-1}
+const	float	$const38	0.40000001		%read{157,231} %write{2147483647,-1}
+temp	color	$tmp68	%read{160,160} %write{159,159}
+temp	float	$tmp69	%read{158,158} %write{157,157}
+temp	float	$tmp70	%read{159,159} %write{158,158}
+temp	float	$tmp72	%read{182,182} %write{181,181}
+temp	int	$tmp73	%read{169,180} %write{170,180}
+temp	float	$tmp74	%read{171,180} %write{171,180}
+temp	point	$tmp75	%read{171,180} %write{171,180}
+temp	point	$tmp76	%read{171,180} %write{171,180}
+temp	point	$tmp77	%read{171,180} %write{171,180}
+temp	float	$tmp78	%read{171,180} %write{171,180}
+temp	int	$tmp79	%read{184,184} %write{183,183}
+temp	float	$tmp80	%read{187,187} %write{186,186}
+temp	float	$tmp81	%read{186,186} %write{185,185}
+temp	float	$tmp82	%read{190,190} %write{189,189}
+temp	int	$tmp83	%read{192,192} %write{191,191}
+temp	float	$tmp84	%read{194,194} %write{193,193}
+temp	float	$tmp85	%read{196,196} %write{195,195}
+temp	float	$tmp86	%read{198,198} %write{197,197}
+const	point	$const39	1 3.4000001 1		%read{201,201} %write{2147483647,-1}
+const	float	$const40	0.34999999		%read{203,239} %write{2147483647,-1}
+temp	color	$tmp89	%read{206,206} %write{205,205}
+temp	float	$tmp90	%read{204,204} %write{203,203}
+temp	float	$tmp91	%read{205,205} %write{204,204}
+temp	float	$tmp93	%read{228,228} %write{227,227}
+temp	int	$tmp94	%read{215,226} %write{216,226}
+temp	float	$tmp95	%read{217,226} %write{217,226}
+temp	point	$tmp96	%read{217,226} %write{217,226}
+temp	point	$tmp97	%read{217,226} %write{217,226}
+temp	point	$tmp98	%read{217,226} %write{217,226}
+temp	float	$tmp99	%read{217,226} %write{217,226}
+temp	int	$tmp100	%read{230,230} %write{229,229}
+temp	float	$tmp101	%read{233,233} %write{232,232}
+temp	float	$tmp102	%read{232,232} %write{231,231}
+temp	float	$tmp103	%read{236,236} %write{235,235}
+temp	int	$tmp104	%read{238,238} %write{237,237}
+temp	float	$tmp105	%read{240,240} %write{239,239}
+temp	float	$tmp106	%read{242,242} %write{241,241}
+temp	float	$tmp107	%read{244,244} %write{243,243}
+temp	int	$tmp108	%read{246,246} %write{245,245}
+temp	int	$tmp109	%read{247,251} %write{246,250}
+const	float	$const41	3.4000001		%read{248,263} %write{2147483647,-1}
+temp	int	$tmp110	%read{249,249} %write{248,248}
+temp	int	$tmp111	%read{250,250} %write{249,249}
+const	point	$const42	0.5 0.5 0		%read{253,253} %write{2147483647,-1}
+temp	float	$tmp112	%read{260,260} %write{259,259}
+temp	float	$tmp113	%read{259,259} %write{257,257}
+temp	float	$tmp114	%read{259,259} %write{258,258}
+temp	float	$tmp115	%read{262,262} %write{261,261}
+temp	int	$tmp116	%read{267,267} %write{266,266}
+temp	int	$tmp117	%read{268,272} %write{267,271}
+temp	int	$tmp118	%read{270,270} %write{269,269}
+temp	int	$tmp119	%read{271,271} %write{270,270}
+temp	float	$tmp120	%read{276,276} %write{275,275}
+temp	float	$tmp121	%read{275,275} %write{274,274}
+temp	float	$tmp122	%read{274,274} %write{273,273}
+temp	float	$tmp123	%read{283,283} %write{279,279}
+temp	float	$tmp124	%read{282,282} %write{281,281}
+temp	float	$tmp125	%read{281,281} %write{280,280}
+temp	float	$tmp126	%read{283,283} %write{282,282}
+temp	float	$tmp127	%read{285,285} %write{284,284}
 code ___main___
-# flowerPotShader.osl:9
-#     float repeatCount = 6;
-	assign		repeatCount $const1 	%filename{"flowerPotShader.osl"} %line{9} %argrw{"wr"}
-# flowerPotShader.osl:10
-#     float s = P[0] * repeatCount;
-	compref		$tmp1 P $const2 	%line{10} %argrw{"wrr"}
-	mul		s $tmp1 repeatCount 	%argrw{"wrr"}
-# flowerPotShader.osl:11
-#     float t = P[1] * repeatCount;
-	compref		$tmp2 P $const3 	%line{11} %argrw{"wrr"}
-	mul		t $tmp2 repeatCount 	%argrw{"wrr"}
-# flowerPotShader.osl:12
-#     vector noiseLayer = 0.5 + noise("perlin",s,t)*0.5;
-	noise		$tmp3 $const5 s t 	%line{12} %argrw{"wrrr"}
-	mul		$tmp4 $tmp3 $const4 	%argrw{"wrr"}
-	add		noiseLayer $const4 $tmp4 	%argrw{"wrr"}
-# flowerPotShader.osl:13
-#     cout = (color)noiseLayer*cin;
-	mul		cout noiseLayer cin 	%line{13} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:12
+#     //now set X,Y,Z coordinates, with (0,0,0) at the centre of the flowerpot base
+	functioncall	$const2 2 	%filename{"C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl"} %line{12} %argrw{"r"}
+# C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h:258
+#     fresnel(I, N, eta, Kr, Kt, R, T);
+	transform	PP $const3 $const1 P 	%filename{"C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h"} %line{258} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:14
+#     float Y = 3 - PP[2];
+	compref		X PP $const4 	%filename{"C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl"} %line{14} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:15
+#     float Z = PP[1];
+	compref		$tmp1 PP $const6 	%line{15} %argrw{"wrr"}
+	sub		Y $const7 $tmp1 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:16
+# 
+	compref		Z PP $const8 	%line{16} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:19
+#     float repeatCountR = 2.9;
+	assign		repeatCountQ $const9 	%line{19} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:20
+#     float s = atan2(PP[1],PP[0])*repeatCountQ;
+	assign		repeatCountR $const10 	%line{20} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:21
+#     float t = PP[2]*sin(atan2(10,1.6))*repeatCountR;
+	compref		$tmp3 PP $const8 	%line{21} %argrw{"wrr"}
+	compref		$tmp4 PP $const4 	%argrw{"wrr"}
+	atan2		$tmp2 $tmp3 $tmp4 	%argrw{"wrr"}
+	mul		s $tmp2 repeatCountQ 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:22
+#     float q = mod(s,1);
+	compref		$tmp5 PP $const6 	%line{22} %argrw{"wrr"}
+	atan2		$tmp7 $const12 $const13 	%argrw{"wrr"}
+	sin		$tmp6 $tmp7 	%argrw{"wr"}
+	mul		$tmp8 $tmp5 $tmp6 	%argrw{"wrr"}
+	mul		t $tmp8 repeatCountR 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:23
+#     float r = mod(t,1);
+	functioncall	$const15 22 	%line{23} %argrw{"r"}
+# C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h:136
+# PERCOMP1 (inversesqrt)
+	div		$tmp10 s $const14 	%filename{"C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h"} %line{136} %argrw{"wrr"}
+	floor		$tmp9 $tmp10 	%argrw{"wr"}
+	mul		$tmp11 $const14 $tmp9 	%argrw{"wrr"}
+	sub		q s $tmp11 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:24
+# 
+	functioncall	$const15 27 	%filename{"C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl"} %line{24} %argrw{"r"}
+# C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h:136
+# PERCOMP1 (sqrt)
+	div		$tmp13 t $const14 	%filename{"C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h"} %line{136} %argrw{"wrr"}
+	floor		$tmp12 $tmp13 	%argrw{"wr"}
+	mul		$tmp14 $const14 $tmp12 	%argrw{"wrr"}
+	sub		r t $tmp14 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:80
+# 
+	assign		___334_baseNoiseCol $const16 	%filename{"C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl"} %line{80} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:82
+#     float persistence = 0.5;
+	assign		___334_amp $const8 	%line{82} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:83
+#     float freq = 2;
+	assign		___334_persistence $const17 	%line{83} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:84
+#     float lacunarity = 2;
+	assign		___334_freq $const6 	%line{84} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:85
+#     float octaves = 4;
+	assign		___334_lacunarity $const6 	%line{85} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:86
+#     float seed = 0;
+	assign		___334_octaves $const18 	%line{86} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:87
+# 
+	assign		___334_seed $const4 	%line{87} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:91
+#     //this ensures colorSwitch is between -1 and 1:
+	functioncall	$const19 49 	%line{91} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:68
+#         for(int i=0; i<octaves; ++i)
+	assign		___331_val $const4 	%line{68} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	for		$tmp15 38 39 47 48 	%line{69} %argrw{"r"}
+	assign		___332_i $const4 	%argrw{"wr"}
+	lt		$tmp15 ___332_i ___334_octaves 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:71
+#             amp *= persistence;
+	mul		$tmp17 PP ___334_freq 	%line{71} %argrw{"wrr"}
+	assign		$tmp18 ___334_seed 	%argrw{"wr"}
+	add		$tmp19 $tmp17 $tmp18 	%argrw{"wrr"}
+	noise		$tmp16 $const20 $tmp19 	%argrw{"wrr"}
+	mul		$tmp20 ___334_amp $tmp16 	%argrw{"wrr"}
+	add		___331_val ___331_val $tmp20 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:72
+#             freq *= lacunarity;
+	mul		___334_amp ___334_amp ___334_persistence 	%line{72} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:73
+#         }
+	mul		___334_freq ___334_freq ___334_lacunarity 	%line{73} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	add		___332_i ___332_i $const8 	%line{69} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:75
+#     }
+	assign		___334_colorSwitch ___331_val 	%line{75} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:93
+#     //this ensures colorSwitch is between 0 and 1:
+	sub		$tmp21 $const14 ___334_persistence 	%line{93} %argrw{"wrr"}
+	mul		___334_colorSwitch ___334_colorSwitch $tmp21 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:95
+#     cout = mix(cin, baseNoiseCol, colorSwitch);
+	mul		$tmp22 $const17 ___334_colorSwitch 	%line{95} %argrw{"wrr"}
+	add		___334_colorSwitch $const17 $tmp22 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:96
+# }
+	mix		cout cin ___334_baseNoiseCol ___334_colorSwitch 	%line{96} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:100
+#     float width = 0.02;
+	assign		___335_crackX $const4 	%line{100} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:101
+#     float fuzz = 0.02;
+	assign		___335_width $const21 	%line{101} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:102
+#     float crackEndY = 1.7;
+	assign		___335_fuzz $const21 	%line{102} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:103
+#     float crackFalloff = 0.3;
+	assign		___335_crackEndY $const22 	%line{103} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:104
+#     float indent = 0.005;
+	assign		___335_crackFalloff $const23 	%line{104} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:105
+#     color crackColor = mix(cin, color(1,1,1), 0.2);
+	assign		___335_indent $const24 	%line{105} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:106
+#     crackColor *= (0.5 + 0.5*(float)(noise("perlin", PP)));
+	mix		___335_crackColor cin $const25 $const26 	%line{106} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:107
+# 
+	noise		$tmp24 $const20 PP 	%line{107} %argrw{"wrr"}
+	mul		$tmp25 $const17 $tmp24 	%argrw{"wrr"}
+	add		$tmp26 $const17 $tmp25 	%argrw{"wrr"}
+	mul		___335_crackColor ___335_crackColor $tmp26 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:109
+#     float persistence = 0.5;
+	assign		___335_amp $const23 	%line{109} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:110
+#     float freq = 1;
+	assign		___335_persistence $const17 	%line{110} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:111
+#     float lacunarity = 2;
+	assign		___335_freq $const8 	%line{111} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:112
+#     float octaves = 4;
+	assign		___335_lacunarity $const6 	%line{112} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:113
+#     float seed = 1;
+	assign		___335_octaves $const18 	%line{113} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:114
+#     float crack = X + Y*0.1;
+	assign		___335_seed $const8 	%line{114} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:115
+#     crack += (perlinNoise(  amp, persistence, freq, lacunarity,
+	mul		$tmp27 Y $const27 	%line{115} %argrw{"wrr"}
+	add		___335_crack X $tmp27 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:117
+#     
+	functioncall	$const19 87 	%line{117} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:42
+#         for(int i=0; i<octaves; ++i)
+	assign		___325_val $const4 	%line{42} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:43
+#         {
+	for		$tmp29 77 78 85 86 	%line{43} %argrw{"r"}
+	assign		___326_i $const4 	%argrw{"wr"}
+	lt		$tmp29 ___326_i ___335_octaves 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:45
+#             amp *= persistence;
+	mul		$tmp31 Y ___335_freq 	%line{45} %argrw{"wrr"}
+	add		$tmp32 $tmp31 ___335_seed 	%argrw{"wrr"}
+	noise		$tmp30 $const20 $tmp32 	%argrw{"wrr"}
+	mul		$tmp33 ___335_amp $tmp30 	%argrw{"wrr"}
+	add		___325_val ___325_val $tmp33 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:46
+#             freq *= lacunarity;
+	mul		___335_amp ___335_amp ___335_persistence 	%line{46} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:47
+#         }
+	mul		___335_freq ___335_freq ___335_lacunarity 	%line{47} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:43
+#         {
+	add		___326_i ___326_i $const8 	%line{43} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:49
+#     }
+	assign		$tmp28 ___325_val 	%line{49} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:117
+#     
+	add		___335_crack ___335_crack $tmp28 	%line{117} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:119
+#     {
+	lt		$tmp34 Z $const4 	%line{119} %argrw{"wrr"}
+	if		$tmp34 107 107 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:121
+#         fuzz *= inCrackY;
+	sub		$tmp35 ___335_crackEndY ___335_crackFalloff 	%line{121} %argrw{"wrr"}
+	smoothstep	___336_inCrackY $tmp35 ___335_crackEndY Y 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:122
+#         width *= inCrackY;
+	mul		___335_fuzz ___335_fuzz ___336_inCrackY 	%line{122} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:123
+#         float inCrackX = doubleSmoothstep( 
+	mul		___335_width ___335_width ___336_inCrackY 	%line{123} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:125
+#                                 crackX+width, crackX+width+fuzz, crack);
+	sub		$tmp36 ___335_crackX ___335_width 	%line{125} %argrw{"wrr"}
+	sub		$tmp37 $tmp36 ___335_fuzz 	%argrw{"wrr"}
+	sub		$tmp38 ___335_crackX ___335_width 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:126
+# 
+	add		$tmp39 ___335_crackX ___335_width 	%line{126} %argrw{"wrr"}
+	add		$tmp40 ___335_crackX ___335_width 	%argrw{"wrr"}
+	add		$tmp41 $tmp40 ___335_fuzz 	%argrw{"wrr"}
+	functioncall	$const28 104 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:33
+#                 smoothstep(midPoint2, end, x);
+	smoothstep	$tmp42 $tmp37 $tmp38 ___335_crack 	%line{33} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:34
+#     }
+	smoothstep	$tmp43 $tmp39 $tmp41 ___335_crack 	%line{34} %argrw{"wrrr"}
+	sub		___336_inCrackX $tmp42 $tmp43 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:128
+#         cout = mix(cout, crackColor, inCrackX);
+	mul		$tmp44 ___335_indent ___336_inCrackX 	%line{128} %argrw{"wrr"}
+	sub		dispOut dispOut $tmp44 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:129
+#     }
+	mix		cout cout ___335_crackColor ___336_inCrackX 	%line{129} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:166
+#     addWeathering(point(-1, 2.7, -1.1), 0.5, 0.4);
+	functioncall	$const31 153 	%line{166} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:136
+#         float dist = distance(centre,here);
+	point		___338_here X Y Z 	%line{136} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:137
+#         color weatheringCol1 = mix( cin, color(1,1,1), 0.5);
+	distance	___338_dist $const29 ___338_here 	%line{137} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:138
+#         color weatheringCol2 = mix( mix(cout, weatheringCol1, 1-rad2/rad1),
+	mix		___338_weatheringCol1 cin $const25 $const17 	%line{138} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:139
+#                                     color(0.02,0.01,0),
+	div		$tmp48 $const30 $const14 	%line{139} %argrw{"wrr"}
+	sub		$tmp49 $const14 $tmp48 	%argrw{"wrr"}
+	mix		$tmp47 cout ___338_weatheringCol1 $tmp49 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:141
+#         float amp = 0.7;
+	mix		___338_weatheringCol2 $tmp47 $const32 $const23 	%line{141} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:142
+#         float persistence = 0.56;
+	assign		___338_amp $const33 	%line{142} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:143
+#         float freq = 4;
+	assign		___338_persistence $const34 	%line{143} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:144
+#         float lacunarity = 3;
+	assign		___338_freq $const18 	%line{144} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:145
+#         float octaves = 4;
+	assign		___338_lacunarity $const5 	%line{145} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:146
+#         float seed = 0;
+	assign		___338_octaves $const18 	%line{146} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:147
+#         dist += perlinNoise(amp, persistence, freq, lacunarity,
+	assign		___338_seed $const4 	%line{147} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:149
+# 
+	functioncall	$const19 136 	%line{149} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:68
+#         for(int i=0; i<octaves; ++i)
+	assign		___331_val $const4 	%line{68} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	for		$tmp52 125 126 134 135 	%line{69} %argrw{"r"}
+	assign		___332_i $const4 	%argrw{"wr"}
+	lt		$tmp52 ___332_i ___338_octaves 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:71
+#             amp *= persistence;
+	mul		$tmp54 PP ___338_freq 	%line{71} %argrw{"wrr"}
+	assign		$tmp55 ___338_seed 	%argrw{"wr"}
+	add		$tmp56 $tmp54 $tmp55 	%argrw{"wrr"}
+	noise		$tmp53 $const20 $tmp56 	%argrw{"wrr"}
+	mul		$tmp57 ___338_amp $tmp53 	%argrw{"wrr"}
+	add		___331_val ___331_val $tmp57 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:72
+#             freq *= lacunarity;
+	mul		___338_amp ___338_amp ___338_persistence 	%line{72} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:73
+#         }
+	mul		___338_freq ___338_freq ___338_lacunarity 	%line{73} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	add		___332_i ___332_i $const8 	%line{69} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:75
+#     }
+	assign		$tmp51 ___331_val 	%line{75} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:149
+# 
+	add		___338_dist ___338_dist $tmp51 	%line{149} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:151
+#         {
+	lt		$tmp58 ___338_dist $const14 	%line{151} %argrw{"wrr"}
+	if		$tmp58 153 153 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:153
+#             cout = mix(cout, weatheringCol1, scale1);
+	div		$tmp60 ___338_dist $const14 	%line{153} %argrw{"wrr"}
+	max		$tmp59 $tmp60 $const35 	%argrw{"wrr"}
+	sub		___339_scale1 $const14 $tmp59 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:154
+#             dispOut = dispOut - scale1*0.004;
+	mix		cout cout ___338_weatheringCol1 ___339_scale1 	%line{154} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:155
+# 
+	mul		$tmp61 ___339_scale1 $const36 	%line{155} %argrw{"wrr"}
+	sub		dispOut dispOut $tmp61 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:157
+#             {
+	lt		$tmp62 ___338_dist $const30 	%line{157} %argrw{"wrr"}
+	if		$tmp62 153 153 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:159
+#                 scale2 *= scale2*scale2;
+	div		$tmp63 ___338_dist $const30 	%line{159} %argrw{"wrr"}
+	max		___340_scale2 $tmp63 $const35 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:160
+#                 cout = mix(cout, weatheringCol2, 1-scale2);
+	mul		$tmp64 ___340_scale2 ___340_scale2 	%line{160} %argrw{"wrr"}
+	mul		___340_scale2 ___340_scale2 $tmp64 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:161
+#             }
+	sub		$tmp65 $const14 ___340_scale2 	%line{161} %argrw{"wrr"}
+	mix		cout cout ___338_weatheringCol2 $tmp65 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:167
+#     addWeathering(point(1, 3.4, 1), 0.4, 0.35);
+	functioncall	$const31 199 	%line{167} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:136
+#         float dist = distance(centre,here);
+	point		___338_here X Y Z 	%line{136} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:137
+#         color weatheringCol1 = mix( cin, color(1,1,1), 0.5);
+	distance	___338_dist $const37 ___338_here 	%line{137} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:138
+#         color weatheringCol2 = mix( mix(cout, weatheringCol1, 1-rad2/rad1),
+	mix		___338_weatheringCol1 cin $const25 $const17 	%line{138} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:139
+#                                     color(0.02,0.01,0),
+	div		$tmp69 $const38 $const17 	%line{139} %argrw{"wrr"}
+	sub		$tmp70 $const14 $tmp69 	%argrw{"wrr"}
+	mix		$tmp68 cout ___338_weatheringCol1 $tmp70 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:141
+#         float amp = 0.7;
+	mix		___338_weatheringCol2 $tmp68 $const32 $const23 	%line{141} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:142
+#         float persistence = 0.56;
+	assign		___338_amp $const33 	%line{142} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:143
+#         float freq = 4;
+	assign		___338_persistence $const34 	%line{143} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:144
+#         float lacunarity = 3;
+	assign		___338_freq $const18 	%line{144} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:145
+#         float octaves = 4;
+	assign		___338_lacunarity $const5 	%line{145} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:146
+#         float seed = 0;
+	assign		___338_octaves $const18 	%line{146} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:147
+#         dist += perlinNoise(amp, persistence, freq, lacunarity,
+	assign		___338_seed $const4 	%line{147} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:149
+# 
+	functioncall	$const19 182 	%line{149} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:68
+#         for(int i=0; i<octaves; ++i)
+	assign		___331_val $const4 	%line{68} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	for		$tmp73 171 172 180 181 	%line{69} %argrw{"r"}
+	assign		___332_i $const4 	%argrw{"wr"}
+	lt		$tmp73 ___332_i ___338_octaves 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:71
+#             amp *= persistence;
+	mul		$tmp75 PP ___338_freq 	%line{71} %argrw{"wrr"}
+	assign		$tmp76 ___338_seed 	%argrw{"wr"}
+	add		$tmp77 $tmp75 $tmp76 	%argrw{"wrr"}
+	noise		$tmp74 $const20 $tmp77 	%argrw{"wrr"}
+	mul		$tmp78 ___338_amp $tmp74 	%argrw{"wrr"}
+	add		___331_val ___331_val $tmp78 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:72
+#             freq *= lacunarity;
+	mul		___338_amp ___338_amp ___338_persistence 	%line{72} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:73
+#         }
+	mul		___338_freq ___338_freq ___338_lacunarity 	%line{73} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	add		___332_i ___332_i $const8 	%line{69} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:75
+#     }
+	assign		$tmp72 ___331_val 	%line{75} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:149
+# 
+	add		___338_dist ___338_dist $tmp72 	%line{149} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:151
+#         {
+	lt		$tmp79 ___338_dist $const17 	%line{151} %argrw{"wrr"}
+	if		$tmp79 199 199 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:153
+#             cout = mix(cout, weatheringCol1, scale1);
+	div		$tmp81 ___338_dist $const17 	%line{153} %argrw{"wrr"}
+	max		$tmp80 $tmp81 $const35 	%argrw{"wrr"}
+	sub		___339_scale1 $const14 $tmp80 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:154
+#             dispOut = dispOut - scale1*0.004;
+	mix		cout cout ___338_weatheringCol1 ___339_scale1 	%line{154} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:155
+# 
+	mul		$tmp82 ___339_scale1 $const36 	%line{155} %argrw{"wrr"}
+	sub		dispOut dispOut $tmp82 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:157
+#             {
+	lt		$tmp83 ___338_dist $const38 	%line{157} %argrw{"wrr"}
+	if		$tmp83 199 199 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:159
+#                 scale2 *= scale2*scale2;
+	div		$tmp84 ___338_dist $const38 	%line{159} %argrw{"wrr"}
+	max		___340_scale2 $tmp84 $const35 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:160
+#                 cout = mix(cout, weatheringCol2, 1-scale2);
+	mul		$tmp85 ___340_scale2 ___340_scale2 	%line{160} %argrw{"wrr"}
+	mul		___340_scale2 ___340_scale2 $tmp85 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:161
+#             }
+	sub		$tmp86 $const14 ___340_scale2 	%line{161} %argrw{"wrr"}
+	mix		cout cout ___338_weatheringCol2 $tmp86 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:168
+#     
+	functioncall	$const31 245 	%line{168} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:136
+#         float dist = distance(centre,here);
+	point		___338_here X Y Z 	%line{136} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:137
+#         color weatheringCol1 = mix( cin, color(1,1,1), 0.5);
+	distance	___338_dist $const39 ___338_here 	%line{137} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:138
+#         color weatheringCol2 = mix( mix(cout, weatheringCol1, 1-rad2/rad1),
+	mix		___338_weatheringCol1 cin $const25 $const17 	%line{138} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:139
+#                                     color(0.02,0.01,0),
+	div		$tmp90 $const40 $const38 	%line{139} %argrw{"wrr"}
+	sub		$tmp91 $const14 $tmp90 	%argrw{"wrr"}
+	mix		$tmp89 cout ___338_weatheringCol1 $tmp91 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:141
+#         float amp = 0.7;
+	mix		___338_weatheringCol2 $tmp89 $const32 $const23 	%line{141} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:142
+#         float persistence = 0.56;
+	assign		___338_amp $const33 	%line{142} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:143
+#         float freq = 4;
+	assign		___338_persistence $const34 	%line{143} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:144
+#         float lacunarity = 3;
+	assign		___338_freq $const18 	%line{144} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:145
+#         float octaves = 4;
+	assign		___338_lacunarity $const5 	%line{145} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:146
+#         float seed = 0;
+	assign		___338_octaves $const18 	%line{146} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:147
+#         dist += perlinNoise(amp, persistence, freq, lacunarity,
+	assign		___338_seed $const4 	%line{147} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:149
+# 
+	functioncall	$const19 228 	%line{149} %argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:68
+#         for(int i=0; i<octaves; ++i)
+	assign		___331_val $const4 	%line{68} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	for		$tmp94 217 218 226 227 	%line{69} %argrw{"r"}
+	assign		___332_i $const4 	%argrw{"wr"}
+	lt		$tmp94 ___332_i ___338_octaves 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:71
+#             amp *= persistence;
+	mul		$tmp96 PP ___338_freq 	%line{71} %argrw{"wrr"}
+	assign		$tmp97 ___338_seed 	%argrw{"wr"}
+	add		$tmp98 $tmp96 $tmp97 	%argrw{"wrr"}
+	noise		$tmp95 $const20 $tmp98 	%argrw{"wrr"}
+	mul		$tmp99 ___338_amp $tmp95 	%argrw{"wrr"}
+	add		___331_val ___331_val $tmp99 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:72
+#             freq *= lacunarity;
+	mul		___338_amp ___338_amp ___338_persistence 	%line{72} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:73
+#         }
+	mul		___338_freq ___338_freq ___338_lacunarity 	%line{73} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:69
+#         {
+	add		___332_i ___332_i $const8 	%line{69} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:75
+#     }
+	assign		$tmp93 ___331_val 	%line{75} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:149
+# 
+	add		___338_dist ___338_dist $tmp93 	%line{149} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:151
+#         {
+	lt		$tmp100 ___338_dist $const38 	%line{151} %argrw{"wrr"}
+	if		$tmp100 245 245 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:153
+#             cout = mix(cout, weatheringCol1, scale1);
+	div		$tmp102 ___338_dist $const38 	%line{153} %argrw{"wrr"}
+	max		$tmp101 $tmp102 $const35 	%argrw{"wrr"}
+	sub		___339_scale1 $const14 $tmp101 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:154
+#             dispOut = dispOut - scale1*0.004;
+	mix		cout cout ___338_weatheringCol1 ___339_scale1 	%line{154} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:155
+# 
+	mul		$tmp103 ___339_scale1 $const36 	%line{155} %argrw{"wrr"}
+	sub		dispOut dispOut $tmp103 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:157
+#             {
+	lt		$tmp104 ___338_dist $const40 	%line{157} %argrw{"wrr"}
+	if		$tmp104 245 245 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:159
+#                 scale2 *= scale2*scale2;
+	div		$tmp105 ___338_dist $const40 	%line{159} %argrw{"wrr"}
+	max		___340_scale2 $tmp105 $const35 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:160
+#                 cout = mix(cout, weatheringCol2, 1-scale2);
+	mul		$tmp106 ___340_scale2 ___340_scale2 	%line{160} %argrw{"wrr"}
+	mul		___340_scale2 ___340_scale2 $tmp106 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:161
+#             }
+	sub		$tmp107 $const14 ___340_scale2 	%line{161} %argrw{"wrr"}
+	mix		cout cout ___338_weatheringCol2 $tmp107 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:173
+#     {
+	gt		$tmp108 Y $const5 	%line{173} %argrw{"wrr"}
+	neq		$tmp109 $tmp108 $const4 	%argrw{"wrr"}
+	if		$tmp109 251 251 	%argrw{"r"}
+	lt		$tmp110 Y $const41 	%argrw{"wrr"}
+	neq		$tmp111 $tmp110 $const4 	%argrw{"wrr"}
+	assign		$tmp109 $tmp111 	%argrw{"wr"}
+	if		$tmp109 263 263 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:175
+#         point centre = point (0.5,0.5,0);
+	assign		___342_diskFalloff $const27 	%line{175} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:176
+#         point here = point (q,r,0);
+	assign		___342_centre $const42 	%line{176} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:177
+#         float dist = distance(centre,here);
+	point		___342_here q r $const35 	%line{177} %argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:178
+#         float diskRad = 0.3;
+	distance	___342_dist ___342_centre ___342_here 	%line{178} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:179
+#         float inDisk = 1-smoothstep(diskRad-diskFalloff, diskRad+diskFalloff,dist);
+	assign		___342_diskRad $const23 	%line{179} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:180
+#         dispOut += inDisk*0.005;
+	sub		$tmp113 ___342_diskRad ___342_diskFalloff 	%line{180} %argrw{"wrr"}
+	add		$tmp114 ___342_diskRad ___342_diskFalloff 	%argrw{"wrr"}
+	smoothstep	$tmp112 $tmp113 $tmp114 ___342_dist 	%argrw{"wrrr"}
+	sub		___342_inDisk $const14 $tmp112 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:181
+#     }
+	mul		$tmp115 ___342_inDisk $const24 	%line{181} %argrw{"wrr"}
+	add		dispOut dispOut $tmp115 	%argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:184
+#     float lineBottom = 3;
+	assign		___341_lineTop $const41 	%line{184} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:185
+#     float lineFalloff = 0.2;
+	assign		___341_lineBottom $const5 	%line{185} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:186
+#     if((Y>lineBottom and Y<lineTop))
+	assign		___341_lineFalloff $const26 	%line{186} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:187
+#     {
+	gt		$tmp116 Y ___341_lineBottom 	%line{187} %argrw{"wrr"}
+	neq		$tmp117 $tmp116 $const4 	%argrw{"wrr"}
+	if		$tmp117 272 272 	%argrw{"r"}
+	lt		$tmp118 Y ___341_lineTop 	%argrw{"wrr"}
+	neq		$tmp119 $tmp118 $const4 	%argrw{"wrr"}
+	assign		$tmp117 $tmp119 	%argrw{"wr"}
+	if		$tmp117 286 286 	%argrw{"r"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:189
+#         float lineWidth = 0.3;
+	add		$tmp122 ___341_lineBottom ___341_lineFalloff 	%line{189} %argrw{"wrr"}
+	smoothstep	$tmp121 ___341_lineBottom $tmp122 Y 	%argrw{"wrrr"}
+	sqrt		$tmp120 $tmp121 	%argrw{"wr"}
+	sqrt		___343_scale $tmp120 	%argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:190
+#         lineWidth *= scale;
+	assign		___343_lineWidth $const23 	%line{190} %argrw{"wr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:191
+#         float inLine = smoothstep(0.5-lineWidth, 0.5, 0.5-abs(q-0.5));
+	mul		___343_lineWidth ___343_lineWidth ___343_scale 	%line{191} %argrw{"wrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:192
+#         dispOut += inLine*0.005;
+	sub		$tmp123 $const17 ___343_lineWidth 	%line{192} %argrw{"wrr"}
+	sub		$tmp125 q $const17 	%argrw{"wrr"}
+	abs		$tmp124 $tmp125 	%argrw{"wr"}
+	sub		$tmp126 $const17 $tmp124 	%argrw{"wrr"}
+	smoothstep	___343_inLine $tmp123 $const17 $tmp126 	%argrw{"wrrr"}
+# C:\\Users\\Ben\\Documents\\Bournemouth\\SimulationAndRendering\\Rendering\\RendermanProject\\flowerPotShader.osl:193
+#     }
+	mul		$tmp127 ___343_inLine $const24 	%line{193} %argrw{"wrr"}
+	add		dispOut dispOut $tmp127 	%argrw{"wrr"}
 	end

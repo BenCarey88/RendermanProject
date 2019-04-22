@@ -2,13 +2,195 @@ shader flowerPotShader
 (
     color cin = 1,
     output color cout = 0,
-    output color specOut = color(0,1,0)
+    output color specOut = color(0,1,0),
+    output float dispOut = 0
 )
 
 {
-    float repeatCount = 6;
-    float s = P[0] * repeatCount;
-    float t = P[1] * repeatCount;
-    vector noiseLayer = 0.5 + noise("perlin",s,t)*0.5;
-    cout = (color)noiseLayer*cin;
+    //transform coordinates to coordinate system created in shader
+    point PP = transform("pot",P);
+    //now set X,Y,Z coordinates, with (0,0,0) at the centre of the flowerpot base
+    float X = PP[0];
+    float Y = 3 - PP[2];
+    float Z = PP[1];
+
+    //and set 'uv' coordinates s and t
+    float repeatCountQ = 6;
+    float repeatCountR = 2.9;
+    float s = atan2(PP[1],PP[0])*repeatCountQ;
+    float t = PP[2]*sin(atan2(10,1.6))*repeatCountR;
+    float q = mod(s,1);
+    float r = mod(t,1);
+
+//---------------------------DEFINE FUNCTIONS--------------------------
+
+    //this function creates a smoothstep from 0 to 1 then back to 0 again
+    //where start and end are at 0 and midpoint1 to 2 are at 1
+    float doubleSmoothstep( float start, float midPoint1, float midPoint2,
+                            float end, float x)
+    {
+        return  smoothstep(start, midPoint1, x) - 
+                smoothstep(midPoint2, end, x);
+    }
+
+    //fractal perlin noise
+    float perlinNoise(  float amp, float persistence, float freq,
+                        float lacunarity, float octaves,
+                        float seed, float x)
+    {
+        float val = 0;
+        for(int i=0; i<octaves; ++i)
+        {
+            val += amp*(float)noise("perlin",x*freq + seed);
+            amp *= persistence;
+            freq *= lacunarity;
+        }
+        return val;
+    }
+    float perlinNoise(  float amp, float persistence, float freq,
+                        float lacunarity, float octaves,
+                        float seed, float x, float y)
+    {
+        float val = 0;
+        for(int i=0; i<octaves; ++i)
+        {
+            val += amp*(float)noise("perlin",x*freq + seed, y*freq + seed);
+            amp *= persistence;
+            freq *= lacunarity;
+        }
+        return val;
+    }
+    float perlinNoise(  float amp, float persistence, float freq,
+                        float lacunarity, float octaves,
+                        float seed, point w)
+    {
+        float val = 0;
+        for(int i=0; i<octaves; ++i)
+        {
+            val += amp*(float)noise("perlin", w*freq + (point)seed);
+            amp *= persistence;
+            freq *= lacunarity;
+        }
+        return val;
+    }
+
+//--------------------------BASE COLOUR--------------------------------
+{
+    color baseNoiseCol = color(0,0,0);
+
+    float amp = 1;
+    float persistence = 0.5;
+    float freq = 2;
+    float lacunarity = 2;
+    float octaves = 4;
+    float seed = 0;
+
+    float colorSwitch = (float)perlinNoise( amp, persistence,
+                                            freq, lacunarity,
+                                            octaves, seed, PP);
+    //this ensures colorSwitch is between -1 and 1:
+    colorSwitch *= 1-persistence;
+    //this ensures colorSwitch is between 0 and 1:
+    colorSwitch = 0.5 + 0.5*colorSwitch;
+    cout = mix(cin, baseNoiseCol, colorSwitch);
+}
+//-----------------------------CRACK-----------------------------------
+{
+    float crackX = 0;
+    float width = 0.02;
+    float fuzz = 0.02;
+    float crackEndY = 1.7;
+    float crackFalloff = 0.3;
+    float indent = 0.005;
+    color crackColor = mix(cin, color(1,1,1), 0.2);
+    crackColor *= (0.5 + 0.5*(float)(noise("perlin", PP)));
+
+    float amp = 0.3;
+    float persistence = 0.5;
+    float freq = 1;
+    float lacunarity = 2;
+    float octaves = 4;
+    float seed = 1;
+    float crack = X + Y*0.1;
+    crack += (perlinNoise(  amp, persistence, freq, lacunarity,
+                            octaves, seed, Y));
+    
+    if(Z < 0)
+    {
+        float inCrackY = smoothstep(crackEndY - crackFalloff, crackEndY, Y);
+        fuzz *= inCrackY;
+        width *= inCrackY;
+        float inCrackX = doubleSmoothstep( 
+                                crackX-width-fuzz, crackX-width,
+                                crackX+width, crackX+width+fuzz, crack);
+
+        dispOut = dispOut -indent * inCrackX;
+        cout = mix(cout, crackColor, inCrackX);
+    }
+}
+//-----------------------------WEATHERING-----------------------------------
+{
+    void addWeathering(point centre, float rad1, float rad2)
+    {
+        point here = point(X,Y,Z);
+        float dist = distance(centre,here);
+        color weatheringCol1 = mix( cin, color(1,1,1), 0.5);
+        color weatheringCol2 = mix( mix(cout, weatheringCol1, 1-rad2/rad1),
+                                    color(0.02,0.01,0),
+                                    0.3);
+        float amp = 0.7;
+        float persistence = 0.56;
+        float freq = 4;
+        float lacunarity = 3;
+        float octaves = 4;
+        float seed = 0;
+        dist += perlinNoise(amp, persistence, freq, lacunarity,
+                            octaves, seed, PP);
+
+        if(dist < rad1)
+        {
+            float scale1 = 1-max(dist/rad1,0);
+            cout = mix(cout, weatheringCol1, scale1);
+            dispOut = dispOut - scale1*0.004;
+
+            if(dist < rad2)
+            {
+                float scale2 = max(dist/rad2,0);
+                scale2 *= scale2*scale2;
+                cout = mix(cout, weatheringCol2, 1-scale2);
+            }
+        }
+    }
+        
+    addWeathering(point(1.1, 0.4, -0.8), 1, 0.8);
+    addWeathering(point(-1, 2.7, -1.1), 0.5, 0.4);
+    addWeathering(point(1, 3.4, 1), 0.4, 0.35);
+    
+}
+//--------------------------RIM PATTERN--------------------------------
+{
+    if(Y>3 and Y<3.4) //and Z<0)
+    {
+        float diskFalloff = 0.1;
+        point centre = point (0.5,0.5,0);
+        point here = point (q,r,0);
+        float dist = distance(centre,here);
+        float diskRad = 0.3;
+        float inDisk = 1-smoothstep(diskRad-diskFalloff, diskRad+diskFalloff,dist);
+        dispOut += inDisk*0.005;
+    }
+
+    float lineTop = 3.4;
+    float lineBottom = 3;
+    float lineFalloff = 0.2;
+    if((Y>lineBottom and Y<lineTop))
+    {
+        float scale = sqrt(sqrt(smoothstep(lineBottom, lineBottom + lineFalloff, Y)));
+        float lineWidth = 0.3;
+        lineWidth *= scale;
+        float inLine = smoothstep(0.5-lineWidth, 0.5, 0.5-abs(q-0.5));
+        dispOut += inLine*0.005;
+    }
+}
+//---------------------------------------------------------------------
 }

@@ -1,0 +1,96 @@
+#flowerPot.py:
+
+    #Initial camera positioning to see underside of pot
+    ri.Translate(0,0,10)
+    ri.Translate(0,-1,0)
+    ri.Rotate(0,1,0,0)
+    ri.Translate(0,2,0)
+    ri.Rotate(40,1,0,0)
+
+   #Rect Light - NEEDS REPOSITIONING
+    ri.AttributeBegin()
+    ri.Translate(-2,2,-2)
+    ri.Rotate(45,1,0,0)
+    ri.Rotate(45,0,1,0)
+    ri.Light("PxrRectLight","rectLight", {"float exposure" : [5]})
+    ri.AttributeEnd()
+
+    #flowerPot Material
+    ri.Bxdf('PxrSurface', 'plastic', 
+    { 
+        'reference color diffuseColor' : ['flowerPotShader:cout'],
+        'reference color specularFaceColor' : ['flowerPotShader:specOut'],
+        'float specularRoughness' : [0.8],
+        'int diffuseDoubleSided' : [1],
+    })
+
+
+
+#flowerPotShader.osl:
+
+    #adding base colour noise
+    float s = PW[0] * repeatCount;
+    float t = PW[1] * repeatCount;
+    vector noiseLayer = 0.5 + noise("perlin",s,t)*0.5;
+    cout = (color)noiseLayer*cin;
+    cout = cin;
+
+    #adding displaced circles with uvs
+    if(PW[2]<5 and PW[1]<-1.1 and PW[0]>-1.5)
+    {
+        q *= noise("perlin",q,r);
+        r *= noise("perlin",q,r);
+        point centre = point (0.5,0.5,0);
+        point here = point (q,r,0);
+        float dist = distance(centre,here);
+        float radius=(float) noise("cell",repeatCount*u,repeatCount*v)*0.4;
+        float inDisk=1-smoothstep(radius-fuzz,radius+fuzz,dist);
+        dispOut = inDisk*0.01;
+    }
+
+    #crack using world space coordinates:
+    float width = 0.02;
+    float fuzz = 0.02;
+    float indent = 0.005;
+    float crackFalloff = 0.3;
+    color crackColor = 0.9*cin + 0.1*color(1,1,1);
+    crackColor *= abs(noise("perlin", PW[1]));
+    float crack = PW[0] + 0.3*(float)abs(noise("perlin", PW[1]));
+    crack += 0.1*(float)abs(noise("perlin", PW[1]*2));
+    crack += 0.05*(float)(noise("perlin", PW[1]*4));
+    crack += 0.01*(float)abs(noise("perlin", PW[1]*8));    
+    if(PW[2] < 5)
+    {
+        //a ranges from 0 to 1, 0 being outside crack and 1 being inside it
+        float a;
+        //likewise with b
+        float b = smoothstep(-1-crackFalloff, -1 , PW[1]);
+        fuzz *= b;
+        width *= b;
+        if(crack<=-2)
+        {               
+            a = smoothstep(-2-width-fuzz, -2-width, crack);
+        }
+        if(crack>=-2)
+        {
+            a = 1-smoothstep(-2+width, -2+width+fuzz, crack);
+        }
+        dispOut = -indent*a;
+        cout = (1-a)*cout + a*crackColor;
+    }
+
+    #Original crack noise
+    crack += 0.3*(float)abs(noise("perlin", Y+seed));
+    crack += 0.1*(float)abs(noise("perlin", Y*2+seed));
+    crack += 0.05*(float)(noise("perlin", Y*4+seed));
+    crack += 0.01*(float)(noise("perlin", Y*8+seed));
+
+    #rimLines
+    float rimLineFalloff = 0.08;
+    float rimLineY[3] = {2.7, 2.5, 2.3};
+    for(int i=0; i<3; ++i)
+    {
+        float inRimLine = doubleSmoothstep( rimLineY[i]-rimLineFalloff, rimLineY[i],
+                                            rimLineY[i], rimLineY[i]+rimLineFalloff, Y);
+        dispOut += inRimLine*0.01;
+    }

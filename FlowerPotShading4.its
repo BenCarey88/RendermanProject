@@ -1,0 +1,482 @@
+it_Session {-vers 2} {
+  # saved on: 23:34:33 04/17/19 2019
+  # for: Ben
+  # by: it 22.4 (@1946009 Mar  5 2019)
+  CatalogList {} {
+    Catalog {-name Catalog1} {
+      Viewspec {} {
+        channelView c
+        colorSpace Automatic
+        colorTransform sRGB
+        correctionMode 0
+        pan {320.338989 -217.467834}
+        zoomFactor 0.491520
+      }
+      SequenceInfo {} {
+        frameRange {1 0}
+        currentFrame 1
+      }
+      ImageList {} {
+        ImageElement {-handle e0 -isSequence 0 -filename FlowerPotShading4.Contents/flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12440 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e1 -isSequence 0 -filename FlowerPotShading4.Contents/v1-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/11200 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e2 -isSequence 0 -filename FlowerPotShading4.Contents/v2-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/13876 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e3 -isSequence 0 -filename FlowerPotShading4.Contents/v3-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/2300 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e4 -isSequence 0 -filename FlowerPotShading4.Contents/v4-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/4336 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e5 -isSequence 0 -filename FlowerPotShading4.Contents/v5-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10452 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e6 -isSequence 0 -filename FlowerPotShading4.Contents/v6-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10636 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e7 -isSequence 0 -filename FlowerPotShading4.Contents/v7-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10176 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e8 -isSequence 0 -filename FlowerPotShading4.Contents/v8-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/4236 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e9 -isSequence 0 -filename FlowerPotShading4.Contents/v9-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12712 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e10 -isSequence 0 -filename FlowerPotShading4.Contents/v10-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/2112 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e11 -isSequence 0 -filename FlowerPotShading4.Contents/v11-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14420 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e12 -isSequence 0 -filename FlowerPotShading4.Contents/v12-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/308 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e13 -isSequence 0 -filename FlowerPotShading4.Contents/v13-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/1588 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e14 -isSequence 0 -filename FlowerPotShading4.Contents/v14-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/1504 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e15 -isSequence 0 -filename FlowerPotShading4.Contents/v15-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/9580 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e16 -isSequence 0 -filename FlowerPotShading4.Contents/v16-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/5244 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e17 -isSequence 0 -filename FlowerPotShading4.Contents/v17-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/11096 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e18 -isSequence 0 -filename FlowerPotShading4.Contents/v18-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/13912 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e19 -isSequence 0 -filename FlowerPotShading4.Contents/v19-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/4196 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e20 -isSequence 0 -filename FlowerPotShading4.Contents/v20-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14048 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e21 -isSequence 0 -filename FlowerPotShading4.Contents/v21-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14680 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e22 -isSequence 0 -filename FlowerPotShading4.Contents/v22-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/3936 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e23 -isSequence 0 -filename FlowerPotShading4.Contents/v23-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/11660 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e24 -isSequence 0 -filename FlowerPotShading4.Contents/v24-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12876 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e25 -isSequence 0 -filename FlowerPotShading4.Contents/v25-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14432 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e26 -isSequence 0 -filename FlowerPotShading4.Contents/v26-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/7760 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e27 -isSequence 0 -filename FlowerPotShading4.Contents/v27-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14488 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e28 -isSequence 0 -filename FlowerPotShading4.Contents/v28-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10724 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e29 -isSequence 0 -filename FlowerPotShading4.Contents/v29-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12968 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e30 -isSequence 0 -filename FlowerPotShading4.Contents/v30-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/15020 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e31 -isSequence 0 -filename FlowerPotShading4.Contents/v31-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10452 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e32 -isSequence 0 -filename FlowerPotShading4.Contents/v32-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/13812 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e33 -isSequence 0 -filename FlowerPotShading4.Contents/v33-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/9696 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e34 -isSequence 0 -filename FlowerPotShading4.Contents/v34-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/1764 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e35 -isSequence 0 -filename FlowerPotShading4.Contents/v35-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10740 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e36 -isSequence 0 -filename FlowerPotShading4.Contents/v36-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/13884 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e37 -isSequence 0 -filename FlowerPotShading4.Contents/v37-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14132 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e38 -isSequence 0 -filename FlowerPotShading4.Contents/v38-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14292 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e39 -isSequence 0 -filename FlowerPotShading4.Contents/v39-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12128 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e40 -isSequence 0 -filename FlowerPotShading4.Contents/v40-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/4896 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e41 -isSequence 0 -filename FlowerPotShading4.Contents/v41-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/11416 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e42 -isSequence 0 -filename FlowerPotShading4.Contents/v42-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/7032 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e43 -isSequence 0 -filename FlowerPotShading4.Contents/v43-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14828 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e44 -isSequence 0 -filename FlowerPotShading4.Contents/v44-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/8756 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e45 -isSequence 0 -filename FlowerPotShading4.Contents/v45-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10512 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e46 -isSequence 0 -filename FlowerPotShading4.Contents/v46-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14272 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e47 -isSequence 0 -filename FlowerPotShading4.Contents/v47-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/4744 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e48 -isSequence 0 -filename FlowerPotShading4.Contents/v48-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14516 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e49 -isSequence 0 -filename FlowerPotShading4.Contents/v49-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14816 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e50 -isSequence 0 -filename FlowerPotShading4.Contents/v50-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/9548 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e51 -isSequence 0 -filename FlowerPotShading4.Contents/v51-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12600 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e52 -isSequence 0 -filename FlowerPotShading4.Contents/v52-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/5692 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e53 -isSequence 0 -filename FlowerPotShading4.Contents/v53-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/11736 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e55 -isSequence 0 -filename FlowerPotShading4.Contents/v54-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14584 -primary 1;}
+          useCustomView 0
+          ImageList {} {
+            ImageElement {-handle e54 -isSequence 0 -filename FlowerPotShading4.Contents/v55-flowerPot.tiff} {
+              statusMsg {1920x1080 3 channel 32bit float}
+              notes {
+Render Time: 00:00:00}
+              dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/13232 -primary 1;}
+              useCustomView 0
+            }
+          }
+        }
+        ImageElement {-handle e56 -isSequence 0 -filename FlowerPotShading4.Contents/v56-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/3124 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e57 -isSequence 0 -filename FlowerPotShading4.Contents/v57-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/2160 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e58 -isSequence 0 -filename FlowerPotShading4.Contents/v58-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/8228 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e59 -isSequence 0 -filename FlowerPotShading4.Contents/v59-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/15084 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e60 -isSequence 0 -filename FlowerPotShading4.Contents/v60-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/116 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e61 -isSequence 0 -filename FlowerPotShading4.Contents/v61-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/15128 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e62 -isSequence 0 -filename FlowerPotShading4.Contents/v62-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12120 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e63 -isSequence 0 -filename FlowerPotShading4.Contents/v63-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/12404 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e64 -isSequence 0 -filename FlowerPotShading4.Contents/v64-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/6168 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e65 -isSequence 0 -filename FlowerPotShading4.Contents/v65-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/11472 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e66 -isSequence 0 -filename FlowerPotShading4.Contents/v66-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/448 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e67 -isSequence 0 -filename FlowerPotShading4.Contents/v67-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/7984 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e68 -isSequence 0 -filename FlowerPotShading4.Contents/v68-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/10804 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e69 -isSequence 0 -filename FlowerPotShading4.Contents/v69-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/9460 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e70 -isSequence 0 -filename FlowerPotShading4.Contents/v70-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/11928 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e71 -isSequence 0 -filename FlowerPotShading4.Contents/v71-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/6392 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e72 -isSequence 0 -filename FlowerPotShading4.Contents/v72-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14372 -primary 1;}
+          useCustomView 0
+        }
+        ImageElement {-handle e73 -isSequence 0 -filename FlowerPotShading4.Contents/v73-flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id DESKTOP-OKKLHS7/14156 -primary 1;}
+          useCustomView 0
+        }
+      }
+    }
+  }
+}
