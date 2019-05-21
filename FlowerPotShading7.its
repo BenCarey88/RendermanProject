@@ -1,0 +1,29 @@
+it_Session {-vers 2} {
+  # saved on: 20:42:06 10/05/19 2019
+  # for: s5119062
+  # by: it 22.0 (@1873350 Jul 17 2018)
+  CatalogList {} {
+    Catalog {-name Catalog1} {
+      Viewspec {} {
+        channelView c
+        colorSpace Automatic
+        colorTransform sRGB
+        correctionMode 0
+        pan {377.000000 247.000000}
+      }
+      SequenceInfo {} {
+        frameRange {1 0}
+        currentFrame 1
+      }
+      ImageList {} {
+        ImageElement {-handle e0 -isSequence 0 -filename FlowerPotShading7.Contents/flowerPot.tiff} {
+          statusMsg {1920x1080 3 channel 32bit float}
+          notes {
+Render Time: 00:00:00}
+          dspyParams {; d_socket_ctx -id w11909/100239 -primary 1;}
+          useCustomView 0
+        }
+      }
+    }
+  }
+}

@@ -22,6 +22,8 @@ def renderingRoutine(filename):
     ri.Hider("raytrace", {"int incremental" : [1]})
     ri.Integrator("PxrPathTracer", "integrator")
 
+    #ri.DepthOfField(fstop, focalLength, focalDistance)
+
     #-----------Move everything back from camera-----------------------
     ri.Translate(0,0,10)
     ri.Translate(0,-1,0)
@@ -75,16 +77,18 @@ def renderingRoutine(filename):
         'color cin' : [0.15,0.05,0]
     })
 
-    ri.Bxdf('PxrDisney','bxdf',
+    ri.Bxdf('PxrSurface','flowerPotSurface',
     {
-        'reference color baseColor' : ['flowerPotShader:cout'],
+        'reference color diffuseColor' : ['flowerPotShader:cout'],
+        'float subsurfaceGain' : [0.025],
+        'int diffuseDoubleSided' : [1], 
         #'color emitColor' : [0,0.1,0],
         #'color subsurfaceColor' : [0,0.5,0.5],
         #'float subsurface ' : [0.1],
         #'float metallic' : [1],
         #'float specular' : [0.5],
         #'float specularTint' : [1]
-        'float roughness' : [0.6]
+        'float diffuseRoughness' : [0.2]
     })
 
     #-------------------Flower Pot Geometry---------------------------
@@ -125,7 +129,7 @@ def renderingRoutine(filename):
 
     ri.Pattern('soilShader','soilShader',
     {
-        'color cin' : [0.05,0.02,0]
+        'color cin' : [0.05,0.03,0.01]
     })
 
     ri.Displace('PxrDisplace', 'myDisp',
@@ -134,14 +138,18 @@ def renderingRoutine(filename):
         'reference float dispScalar' : ['soilShader:dispOut']
     })
 
-    ri.Bxdf('PxrDisney','soil',
+    ri.Bxdf('PxrSurface','soil',
     {
-        'reference color baseColor' : ['soilShader:cout'],
-        'float subsurface' : [0.3],
+        'reference color diffuseColor' : ['soilShader:cout'],
+        'int diffuseDoubleSided' : [1],
+        'float subsurfaceGain' : [0.3],
         'color subsurfaceColor' : [0.001,0.001,0.001],
-        'float roughness' : [0.7],
-        'float specular' : [0.4],
-        'float specularTint' : [0.7]
+        'float diffuseRoughness' : [0.7],
+        'int specularFresnelMode' : [0],
+        'float specularFresnelShape' : [10.0],
+        'color specularFaceColor' : [1.0,1.0,1.0],
+        'color specularEdgeColor' : [1.0,1.0,1.0],
+        'float specularRoughness' : [0.01]
     })
 
     ri.Disk(-0.1, rCone, 360)
