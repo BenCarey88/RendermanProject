@@ -1,0 +1,9 @@
+shader groundPlaneShader
+(
+    color Cin = 1,
+    string TextureName = "",
+    output color Cout = 0
+)
+{
+    Cout = (color)texture(TextureName,u,v);
+}

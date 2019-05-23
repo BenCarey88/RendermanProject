@@ -18,13 +18,13 @@ AttributeEnd
 AttributeBegin 
 Pattern "groundPlaneShader" "groundPlaneShader" "string TextureName" ["woodTexture.tx"]
 Bxdf "PxrSurface" "wood" "reference color diffuseColor" ["groundPlaneShader:Cout"] "int diffuseDoubleSided" [1]
-Translate 0 -4 0
+Translate 0 -3 0
 Patch "bilinear" "P" [-40 0 0 40 0 0 -40 0 80 40 0 80]
 AttributeEnd 
 TransformBegin 
 Scale 1.5 1.5 1.5
 Translate -2 0 0
-Translate 0 0 5
+Translate 0 0 10
 Rotate 90 1 0 0
 CoordinateSystem "pot"
 AttributeBegin 

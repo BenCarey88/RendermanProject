@@ -1,0 +1,14 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.8.2.pixar1697a56
+# options: 
+shader groundPlaneShader
+param	color	Cin	1 1 1		%read{2147483647,-1} %write{2147483647,-1}
+param	string	TextureName	""		%read{0,0} %write{2147483647,-1}
+oparam	color	Cout	0 0 0		%read{2147483647,-1} %write{0,0}
+global	float	u	%read{0,0} %write{2147483647,-1} %derivs
+global	float	v	%read{0,0} %write{2147483647,-1} %derivs
+code ___main___
+# groundPlaneShader.osl:8
+#     Cout = (color)texture(TextureName,u,v);
+	texture		Cout TextureName u v 	%filename{"groundPlaneShader.osl"} %line{8} %argrw{"wrrr"} %argderivs{2,3}
+	end

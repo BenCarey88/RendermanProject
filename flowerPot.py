@@ -22,6 +22,9 @@ def renderingRoutine(filename):
     ri.Hider("raytrace", {"int incremental" : [1]})
     ri.Integrator("PxrPathTracer", "integrator")
 
+    fstop = 1.0
+    focalLength = 0.1
+    focalDistance = 12.0
     #ri.DepthOfField(fstop, focalLength, focalDistance)
 
     #-----------Move everything back from camera-----------------------
@@ -35,15 +38,29 @@ def renderingRoutine(filename):
     ri.AttributeBegin()
     ri.Rotate(-90,1,0,0)
     ri.Rotate(10,0,0,1)
-    ri.Light("PxrDomeLight","domeLight",{"float exposure" : [0], "string lightColorMap" : ["envMap.tx"]})
+    ri.Light("PxrDomeLight","domeLight",
+    {
+        "float exposure" : [0], 
+        "string lightColorMap" : ["envMap.tx"]
+    })
     ri.AttributeEnd()
 
     #----------------Ground Plane--------------------------------------
-    planePoints = [ -6, 0, 0,  
-                     6, 0, 0, 
-                    -6, 0, 10,
-                     6, 0, 10 ]
+    s = 40
+    planePoints = [ -s, 0, 0,  
+                     s, 0, 0, 
+                    -s, 0, 2*s,
+                     s, 0, 2*s ]
     ri.AttributeBegin()
+    ri.Pattern('groundPlaneShader', 'groundPlaneShader',
+    {
+        'string TextureName' : ["woodTexture.tx"]
+    })
+    ri.Bxdf('PxrSurface', 'wood',
+    {
+        'reference color diffuseColor' : ['groundPlaneShader:Cout'],
+        'int diffuseDoubleSided' : [1]
+    })
     ri.Translate(0,-3,0)
     ri.Patch("bilinear", {"P" : planePoints})
     ri.AttributeEnd()
@@ -51,6 +68,9 @@ def renderingRoutine(filename):
 #----------------------FLOWER POT-----------------------------------------
     ri.TransformBegin()
     
+    #scale = 1.5
+
+    #ri.Scale(scale, scale, scale)
     ri.Translate(-2,0,0)
     ri.Translate(0,0,5)
     ri.Rotate(90,1,0,0)
@@ -94,7 +114,7 @@ def renderingRoutine(filename):
     #-------------------Flower Pot Geometry---------------------------
     rCone = 1.6
     hCone = 10
-    rMinTorus1 = 0.1
+    rMinTorus1 = 0.075
     hCylinder1 = 0.4
     rMinTorus2 = 0.1
     hCylinder2 = 0.05
@@ -163,4 +183,5 @@ def renderingRoutine(filename):
 if __name__ == '__main__':
     checkAndCompileShader('flowerPotShader')
     checkAndCompileShader('soilShader')
+    checkAndCompileShader('groundPlaneShader')
     renderingRoutine('flowerPot.rib')
