@@ -23,13 +23,13 @@ def renderingRoutine(filename):
     ri.Integrator("PxrPathTracer", "integrator")
 
     fstop = 1.0
-    focalLength = 0.1
-    focalDistance = 12.0
-    #ri.DepthOfField(fstop, focalLength, focalDistance)
+    focalLength = 0.2
+    focalDistance = 9.5
+    ri.DepthOfField(fstop, focalLength, focalDistance)
 
     #-----------Move everything back from camera-----------------------
-    ri.Translate(0,0,10)
-    ri.Translate(0,-1,0)
+    ri.Translate(0,0,5.5)
+    ri.Translate(0,-0.8,0)
     ri.Rotate(-20,1,0,0)
 
     ri.WorldBegin()
@@ -46,20 +46,33 @@ def renderingRoutine(filename):
     ri.AttributeEnd()
 
     #----------------Ground Plane--------------------------------------
-    s = 40
-    planePoints = [ -s, 0, 0,  
-                     s, 0, 0, 
-                    -s, 0, 2*s,
-                     s, 0, 2*s ]
+    s = 32
+    planePoints = [ -s, 0, 3,  
+                     s, 0, 3, 
+                    -s, 0, 3+2*s,
+                     s, 0, 3+2*s ]
     ri.AttributeBegin()
     ri.Pattern('groundPlaneShader', 'groundPlaneShader',
     {
-        'string TextureName' : ["woodTexture.tx"]
+        'string TextureName' : ["marble.tx"],
     })
+    
+    ri.Pattern('PxrBump', 'groundPlaneBumpMap',
+    {
+        'string filename' : ["marbleBmp.tx"]
+    })
+    ri.Pattern('PxrNormalMap', 'groundPlaneNormalMap',
+    {
+        'string filename' : ["marbleNormal.tx"]
+    })
+    
     ri.Bxdf('PxrSurface', 'wood',
     {
         'reference color diffuseColor' : ['groundPlaneShader:Cout'],
-        'int diffuseDoubleSided' : [1]
+        'int diffuseDoubleSided' : [1],
+        'float diffuseRoughness' : [0.2],
+        'float reflectionGain' : [0.001],
+        'float glassRoughness' : [0.2]
     })
     ri.Translate(0,-3,0)
     ri.Patch("bilinear", {"P" : planePoints})
@@ -68,11 +81,9 @@ def renderingRoutine(filename):
 #----------------------FLOWER POT-----------------------------------------
     ri.TransformBegin()
     
-    #scale = 1.5
-
-    #ri.Scale(scale, scale, scale)
     ri.Translate(-2,0,0)
     ri.Translate(0,0,5)
+    ri.Translate(0,-0.1,0)
     ri.Rotate(90,1,0,0)
 
     ri.CoordinateSystem('pot')
@@ -94,7 +105,8 @@ def renderingRoutine(filename):
 
     ri.Pattern('flowerPotShader','flowerPotShader',
     {
-        'color cin' : [0.15,0.05,0]
+        'color cin' : [0.725*0.6, 0.522*0.4, 0.365*0.3]
+        #'color cin' : [0.15,0.05,0]
     })
 
     ri.Bxdf('PxrSurface','flowerPotSurface',
@@ -102,20 +114,14 @@ def renderingRoutine(filename):
         'reference color diffuseColor' : ['flowerPotShader:cout'],
         'float subsurfaceGain' : [0.025],
         'int diffuseDoubleSided' : [1], 
-        #'color emitColor' : [0,0.1,0],
-        #'color subsurfaceColor' : [0,0.5,0.5],
-        #'float subsurface ' : [0.1],
-        #'float metallic' : [1],
-        #'float specular' : [0.5],
-        #'float specularTint' : [1]
-        'float diffuseRoughness' : [0.2]
+        'float diffuseRoughness' : [0.6]
     })
 
     #-------------------Flower Pot Geometry---------------------------
     rCone = 1.6
     hCone = 10
     rMinTorus1 = 0.075
-    hCylinder1 = 0.4
+    hCylinder1 = 0.5
     rMinTorus2 = 0.1
     hCylinder2 = 0.05
 
@@ -149,7 +155,8 @@ def renderingRoutine(filename):
 
     ri.Pattern('soilShader','soilShader',
     {
-        'color cin' : [0.05,0.03,0.01]
+        #'color cin' : [0.1,0.02,0.01]
+        'color cin' : [0.243*0.5,0.173*0.5,0.157*0.5]
     })
 
     ri.Displace('PxrDisplace', 'myDisp',
@@ -172,7 +179,7 @@ def renderingRoutine(filename):
         'float specularRoughness' : [0.01]
     })
 
-    ri.Disk(-0.1, rCone, 360)
+    ri.Disk(-0.2, rCone, 360)
     ri.AttributeEnd()
 
     ri.TransformEnd();

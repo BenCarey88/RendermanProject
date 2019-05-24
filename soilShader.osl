@@ -24,8 +24,9 @@ shader soilShader
 
 //---------------------------MAIN SHADER-----------------------------------
 
+    color baseNoiseCol = mix(cin,color(0,0,0),0.5);
     float noiseLayer = 0.5 + 0.5*(float)noise("perlin",P);
-    cout = noiseLayer*cin;
+    cout = mix(baseNoiseCol,cin,noiseLayer)*noiseLayer*0.5;
 
     dispOut = 0.07*(float)noise("perlin",P*2);
     dispOut += 0.04*(float)noise("perlin",P*5);
