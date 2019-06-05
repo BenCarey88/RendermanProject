@@ -5,10 +5,13 @@ Format 1920 1080 1
 Projection "perspective" "fov" [30]
 Hider "raytrace" "int incremental" [1]
 Integrator "PxrPathTracer" "integrator" 
-DepthOfField 1 0.200000003 9.5
+DepthOfField 1 0.100000001 10
 Translate 0 0 5.5
 Translate 0 -0.800000012 0
-Rotate -20 1 0 0
+Translate 1.79999995 0 0
+Rotate -40 1 0 0
+Translate 0 0 -2
+Translate 0 -0.5 0
 WorldBegin 
 AttributeBegin 
 Rotate -90 1 0 0
@@ -19,7 +22,7 @@ AttributeBegin
 Pattern "groundPlaneShader" "groundPlaneShader" "string TextureName" ["marble.tx"]
 Pattern "PxrBump" "groundPlaneBumpMap" "string filename" ["marbleBmp.tx"]
 Pattern "PxrNormalMap" "groundPlaneNormalMap" "string filename" ["marbleNormal.tx"]
-Bxdf "PxrSurface" "wood" "reference color diffuseColor" ["groundPlaneShader:Cout"] "float reflectionGain" [0.00100000005] "float diffuseRoughness" [0.200000003] "float glassRoughness" [0.200000003] "int diffuseDoubleSided" [1]
+Bxdf "PxrSurface" "marble" "reference color diffuseColor" ["groundPlaneShader:Cout"] "float reflectionGain" [0.00100000005] "float diffuseRoughness" [0.200000003] "float glassRoughness" [0.200000003] "int diffuseDoubleSided" [1]
 Translate 0 -3 0
 Patch "bilinear" "P" [-32 0 3 32 0 3 -32 0 67 32 0 67]
 AttributeEnd 

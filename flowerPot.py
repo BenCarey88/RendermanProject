@@ -23,14 +23,20 @@ def renderingRoutine(filename):
     ri.Integrator("PxrPathTracer", "integrator")
 
     fstop = 1.0
-    focalLength = 0.2
-    focalDistance = 9.5
+    focalLength = 0.1 #0.2 for standard angle
+    focalDistance = 10 #9.5 for standard angle
     ri.DepthOfField(fstop, focalLength, focalDistance)
 
     #-----------Move everything back from camera-----------------------
     ri.Translate(0,0,5.5)
     ri.Translate(0,-0.8,0)
-    ri.Rotate(-20,1,0,0)
+    #can remove line below to put it at side of screen
+    ri.Translate(1.8,0,0)
+    #set below to Rotate(-20,1,0,0) for standard angle
+    ri.Rotate(-40,1,0,0)
+    #remove lines below for standard angle
+    ri.Translate(0,0,-2)
+    ri.Translate(0,-0.5,0)
 
     ri.WorldBegin()
 
@@ -52,11 +58,11 @@ def renderingRoutine(filename):
                     -s, 0, 3+2*s,
                      s, 0, 3+2*s ]
     ri.AttributeBegin()
+    
     ri.Pattern('groundPlaneShader', 'groundPlaneShader',
     {
         'string TextureName' : ["marble.tx"],
-    })
-    
+    })    
     ri.Pattern('PxrBump', 'groundPlaneBumpMap',
     {
         'string filename' : ["marbleBmp.tx"]
@@ -66,7 +72,7 @@ def renderingRoutine(filename):
         'string filename' : ["marbleNormal.tx"]
     })
     
-    ri.Bxdf('PxrSurface', 'wood',
+    ri.Bxdf('PxrSurface', 'marble',
     {
         'reference color diffuseColor' : ['groundPlaneShader:Cout'],
         'int diffuseDoubleSided' : [1],
